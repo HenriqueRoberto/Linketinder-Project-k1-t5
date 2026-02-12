@@ -1,5 +1,9 @@
 package linketinder
 
-static void main(String[] args) {
-    println "Hello world!"
+import linketinder.controller.AppController
+
+class Main {
+    static void main(String[] args) {
+        AppController.iniciar()
+    }
 }
