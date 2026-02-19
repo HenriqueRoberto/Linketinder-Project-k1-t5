@@ -22,26 +22,31 @@ class MenuView {
     }
 
     static int menuCandidato(String nome) {
-        println "\n--- Bem-vindo(a), $nome ---"
-        println "1 - Ver meus dados"
-        println "2 - Listar Empresas"
-        println "0 - Logout"
+        println "\n--- Menu do Candidato: $nome ---"
+        println "1. Ver Meus Dados"
+        println "2. Explorar Empresas (Dar Like)"
+        println "3. Ver Meus Matches"
+        println "0. Logout"
         print "Escolha: "
         return scanner.nextInt()
     }
 
     static int menuEmpresa(String nome) {
-        println "\n--- Empresa: $nome ---"
-        println "1 - Ver meus dados"
-        println "2 - Listar Candidatos"
-        println "0 - Logout"
+        println "\n--- Menu da Empresa: $nome ---"
+        println "1. Ver Meus Dados"
+        println "2. Explorar Candidatos (Dar Like)"
+        println "3. Ver Meus Matches"
+        println "0. Logout"
         print "Escolha: "
         return scanner.nextInt()
     }
 
-    static void exibirPerfil(Object perfil) {
-        println "\n=== SEUS DADOS ==="
-        println perfil.toString()
+    /* Método genérico para exibir o perfil logado */
+
+    static void exibirPerfilLogado(Object perfil) {
+        println "\n=== SEU PERFIL ==="
+        println perfil
+        println "===================="
     }
 
     static void listarCandidatos(List<Candidato> candidatos) {
@@ -59,6 +64,27 @@ class MenuView {
             // Ao passar o objeto direto, o Groovy usa o toString() da classe PessoaJuridica
             println empresa
             println "-----------------------"
+        }
+    }
+
+    static String interagirComPerfil(Object perfil) {
+        println "\n" + perfil
+        print "\n[L] Like | [P] Próximo | [S] Sair: "
+        return scanner.next().toUpperCase()
+    }
+
+    static void exibirMatches(List matches) {
+        println "\n --- SEUS MATCHES --- "
+
+        if (matches.isEmpty()) {
+            println "Ainda não houve nenhum match. Continue dando likes!"
+        } else {
+            matches.each { perfil ->
+                // Ao imprimir o objeto direto, o Groovy usa o seu toString() completo
+                // com CPF/CNPJ, Competências, Descrição, etc.
+                println perfil
+                println "------------------------------------------"
+            }
         }
     }
     static void exibirMensagem(String msg) {
