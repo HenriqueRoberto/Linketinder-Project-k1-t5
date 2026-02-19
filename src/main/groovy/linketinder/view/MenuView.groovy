@@ -1,93 +1,59 @@
 package linketinder.view
 
-import java.util.Scanner
-import linketinder.model.Candidato
-import linketinder.model.Empresa
+import linketinder.model.*
 
 class MenuView {
-    private static final Scanner scanner = new Scanner(System.in)
 
-    static int mostrarMenuInicial() {
-        println "\n=== LINKETINDER - LOGIN ==="
-        println "1 - Login como Candidato"
-        println "2 - Login como Empresa"
+    // Exibe as opções iniciais do sistema para usuários não autenticados
+    static void mostrarMenuInicial() {
+        println "\n=== LINKETINDER ==="
+        println "1 - Login"
+        println "2 - Cadastrar Candidato"
+        println "3 - Cadastrar Empresa"
         println "0 - Sair"
-        print "Escolha: "
-        return scanner.nextInt()
+        print "Escolha uma opção: "
     }
 
-    static String pedirEmail() {
-        print "Digite seu email: "
-        return scanner.next()
+    // Menu restrito a candidatos após o login bem-sucedido
+    static void menuCandidato(String nome) {
+        println "\n--- MENU CANDIDATO: " + nome + " ---"
+        println "1 - Ver Meus Dados"
+        println "2 - Adicionar Competências"
+        println "3 - Explorar Empresas"
+        println "4 - Ver Meus Matches"
+        println "0 - Logout"
+        print "Escolha uma opção: "
     }
 
-    static int menuCandidato(String nome) {
-        println "\n--- Menu do Candidato: $nome ---"
-        println "1. Ver Meus Dados"
-        println "2. Explorar Empresas (Dar Like)"
-        println "3. Ver Meus Matches"
-        println "0. Logout"
-        print "Escolha: "
-        return scanner.nextInt()
+    // Menu restrito a empresas após o login bem-sucedido
+    static void menuEmpresa(String nome) {
+        println "\n--- MENU EMPRESA: " + nome + " ---"
+        println "1 - Ver Meus Dados"
+        println "2 - Adicionar Competências"
+        println "3 - Explorar Candidatos"
+        println "4 - Ver Meus Matches"
+        println "0 - Logout"
+        print "Escolha uma opção: "
     }
 
-    static int menuEmpresa(String nome) {
-        println "\n--- Menu da Empresa: $nome ---"
-        println "1. Ver Meus Dados"
-        println "2. Explorar Candidatos (Dar Like)"
-        println "3. Ver Meus Matches"
-        println "0. Logout"
-        print "Escolha: "
-        return scanner.nextInt()
+    // Utiliza o toString() sobrescrito no model para exibir as informações do perfil
+    static void exibirPerfilLogado(Object usuario) {
+        println "\n--- SEU PERFIL ---"
+        println usuario.toString()
     }
 
-    /* Método genérico para exibir o perfil logado */
-
-    static void exibirPerfilLogado(Object perfil) {
-        println "\n=== SEU PERFIL ==="
-        println perfil
-        println "===================="
+    // Padroniza as opções de interação durante a navegação entre perfis
+    static void interagirOpcoes() {
+        print "\n[L] Curtir | [P] Próximo | [S] Sair: "
     }
 
-    static void listarCandidatos(List<Candidato> candidatos) {
-        println "\n=== CANDIDATOS CADASTRADOS ==="
-        candidatos.each { candidato ->
-            // Ao passar o objeto direto, o Groovy usa o toString() da classe PessoaFisica
-            println candidato
-            println "-----------------------"
-        }
-    }
-
-    static void listarEmpresas(List<Empresa> empresas) {
-        println "\n=== EMPRESAS CADASTRADAS ==="
-        empresas.each { empresa ->
-            // Ao passar o objeto direto, o Groovy usa o toString() da classe PessoaJuridica
-            println empresa
-            println "-----------------------"
-        }
-    }
-
-    static String interagirComPerfil(Object perfil) {
-        println "\n" + perfil
-        print "\n[L] Like | [P] Próximo | [S] Sair: "
-        return scanner.next().toUpperCase()
-    }
-
+    // Itera sobre a lista de matches e exibe nome e e-mail dos contatos correspondentes
     static void exibirMatches(List matches) {
-        println "\n --- SEUS MATCHES --- "
-
+        println "\n--- SEUS MATCHES ---"
         if (matches.isEmpty()) {
-            println "Ainda não houve nenhum match. Continue dando likes!"
+            println "Nenhum match encontrado até o momento."
         } else {
-            matches.each { perfil ->
-                // Ao imprimir o objeto direto, o Groovy usa o seu toString() completo
-                // com CPF/CNPJ, Competências, Descrição, etc.
-                println perfil
-                println "------------------------------------------"
-            }
+            matches.each { println "Match com: " + it.nome + " (" + it.email + ")" }
         }
-    }
-    static void exibirMensagem(String msg) {
-        println msg
     }
 }
