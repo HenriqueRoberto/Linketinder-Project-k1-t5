@@ -27,3 +27,7 @@ application {
 
     mainClass = 'linketinder.Main'
 }
+
+run {
+    standardInput = System.in
+}
