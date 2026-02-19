@@ -39,13 +39,16 @@ class PessoaJuridica implements Pessoa {
 
     @Override
     String toString() {
+        String compTexto = (competencias == null || competencias.isEmpty()) ?
+                "sem competências exigidas" : competencias.join(", ")
+
         return "Nome: " + nome +
                 "\nEmail Corporativo: " + email +
                 "\nCNPJ: " + cnpj +
                 "\nPaís: " + pais +
                 "\nEstado: " + estado +
                 "\nCEP: " + cep +
-                "\nDescrição: " + descricao +
-                "\nCompetências esperadas: " + competencias
+                "\nDescrição: " + (descricao ?: "Sem descrição") +
+                "\nCompetências esperadas: " + compTexto
     }
 }

@@ -41,13 +41,17 @@ class PessoaFisica implements Pessoa {
 
     @Override
     String toString() {
+        // Verificamos se a lista está nula ou vazia
+        String compTexto = (competencias == null || competencias.isEmpty()) ?
+                "sem competências cadastradas" : competencias.join(", ")
+
         return "Nome: " + nome +
                 "\nEmail: " + email +
                 "\nCPF: " + cpf +
                 "\nIdade: " + idade +
                 "\nEstado: " + estado +
                 "\nCEP: " + cep +
-                "\nDescrição: " + descricao +
-                "\nCompetências: " + competencias
+                "\nDescrição: " + (descricao ?: "Sem descrição") +
+                "\nCompetências: " + compTexto
     }
 }
