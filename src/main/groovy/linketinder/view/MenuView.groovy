@@ -46,14 +46,21 @@ class MenuView {
 
     static void listarCandidatos(List<Candidato> candidatos) {
         println "\n=== CANDIDATOS CADASTRADOS ==="
-        candidatos.each { println "- ${it.nome} (${it.email})" }
+        candidatos.each { candidato ->
+            // Ao passar o objeto direto, o Groovy usa o toString() da classe PessoaFisica
+            println candidato
+            println "-----------------------"
+        }
     }
 
     static void listarEmpresas(List<Empresa> empresas) {
         println "\n=== EMPRESAS CADASTRADAS ==="
-        empresas.each { println "- ${it.nome} | País: ${it.pais}" }
+        empresas.each { empresa ->
+            // Ao passar o objeto direto, o Groovy usa o toString() da classe PessoaJuridica
+            println empresa
+            println "-----------------------"
+        }
     }
-
     static void exibirMensagem(String msg) {
         println msg
     }
