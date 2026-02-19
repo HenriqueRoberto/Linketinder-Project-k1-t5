@@ -4,27 +4,37 @@ import linketinder.model.Candidato
 import linketinder.model.Empresa
 
 class MatchService {
-    private static Set<String> likesCandidatos = [] as Set
-    private static Set<String> likesEmpresas = [] as Set
+    // Armazena os likes: [emailOrigem: [emailDestino1, emailDestino2]]
+    private static Map<String, Set<String>> likesCandidatos = [:]
+    private static Map<String, Set<String>> likesEmpresas = [:]
 
     static void registrarLikeCandidato(String emailCandidato, String emailEmpresa) {
-        likesCandidatos.add("${emailCandidato}:${emailEmpresa}")
+        if (!likesCandidatos[emailCandidato]) likesCandidatos[emailCandidato] = [] as Set
+        likesCandidatos[emailCandidato].add(emailEmpresa)
     }
 
     static void registrarLikeEmpresa(String emailEmpresa, String emailCandidato) {
-        likesEmpresas.add("${emailEmpresa}:${emailCandidato}")
+        if (!likesEmpresas[emailEmpresa]) likesEmpresas[emailEmpresa] = [] as Set
+        likesEmpresas[emailEmpresa].add(emailCandidato)
     }
 
     static boolean houveMatch(String emailCandidato, String emailEmpresa) {
-        return likesCandidatos.contains("${emailCandidato}:${emailEmpresa}") &&
-                likesEmpresas.contains("${emailEmpresa}:${emailCandidato}")
+        // Verifica se ambos deram like um no outro
+        return likesCandidatos[emailCandidato]?.contains(emailEmpresa) &&
+                likesEmpresas[emailEmpresa]?.contains(emailCandidato)
     }
 
-    static List obterMatchesCandidato(String emailCandidato, List todasEmpresas) {
-        return todasEmpresas.findAll { houveMatch(emailCandidato, it.email) }
+    static List<Empresa> obterMatchesCandidato(String emailCandidato) {
+        // Filtra as empresas que resultaram em match
+        return EmpresaService.listar().findAll { empresa ->
+            houveMatch(emailCandidato, empresa.email)
+        }
     }
 
-    static List obterMatchesEmpresa(String emailEmpresa, List todosCandidatos) {
-        return todosCandidatos.findAll { houveMatch(it.email, emailEmpresa) }
+    static List<Candidato> obterMatchesEmpresa(String emailEmpresa) {
+        // Filtra os candidatos que resultaram em match
+        return CandidatoService.listar().findAll { candidato ->
+            houveMatch(candidato.email, emailEmpresa)
+        }
     }
 }

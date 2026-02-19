@@ -7,111 +7,21 @@ class DadosMock {
 
     static List<Candidato> candidatos() {
         [
-                new Candidato(
-                        nome: "Ana Silva",
-                        email: "ana@email.com",
-                        cpf: "11111111111",
-                        idade: 22,
-                        estado: "SC",
-                        cep: "88000-000",
-                        descricao: "Desenvolvedora iniciante",
-                        competencias: ["Java", "SQL"]
-                ),
-                new Candidato(
-                        nome: "Bruno Costa",
-                        email: "bruno@email.com",
-                        cpf: "22222222222",
-                        idade: 25,
-                        estado: "SP",
-                        cep: "01000-000",
-                        descricao: "Back-end Node",
-                        competencias: ["Node", "MongoDB"]
-                ),
-                new Candidato(
-                        nome: "Carla Souza",
-                        email: "carla@email.com",
-                        cpf: "33333333333",
-                        idade: 24,
-                        estado: "RS",
-                        cep: "90000-000",
-                        descricao: "Front-end",
-                        competencias: ["Angular", "CSS"]
-                ),
-                new Candidato(
-                        nome: "Diego Alves",
-                        email: "diego@email.com",
-                        cpf: "44444444444",
-                        idade: 28,
-                        estado: "PR",
-                        cep: "80000-000",
-                        descricao: "Fullstack",
-                        competencias: ["React", "Node"]
-                ),
-                new Candidato(
-                        nome: "Elisa Rocha",
-                        email: "elisa@email.com",
-                        cpf: "55555555555",
-                        idade: 21,
-                        estado: "RJ",
-                        cep: "20000-000",
-                        descricao: "Estudante de TI",
-                        competencias: ["Python", "Pandas"]
-                )
+                new Candidato("Ana Silva", "ana@email.com", "11111111111", 22, "SC", "88000-000", "Desenvolvedora iniciante", ["Java", "SQL"], "senha123"),
+                new Candidato("Bruno Costa", "bruno@email.com", "22222222222", 25, "SP", "01000-000", "Back-end Node", ["Node", "MongoDB"], "senha123"),
+                new Candidato("Carla Souza", "carla@email.com", "33333333333", 24, "RS", "90000-000", "Front-end", ["Angular", "CSS"], "senha123"),
+                new Candidato("Diego Alves", "diego@email.com", "44444444444", 28, "PR", "80000-000", "Fullstack", ["React", "Node"], "senha123"),
+                new Candidato("Elisa Rocha", "elisa@email.com", "55555555555", 21, "RJ", "20000-000", "Estudante de TI", ["Python", "Pandas"], "senha123")
         ]
     }
 
     static List<Empresa> empresas() {
         [
-                new Empresa(
-                        nome: "TechSul",
-                        email: "rh@techsul.com",
-                        cnpj: "11111111000101",
-                        pais: "Brasil",
-                        estado: "RS",
-                        cep: "90000-100",
-                        descricao: "Software sob demanda",
-                        competencias: ["Java", "Spring"]
-                ),
-                new Empresa(
-                        nome: "DataWave",
-                        email: "jobs@datawave.com",
-                        cnpj: "22222222000102",
-                        pais: "Brasil",
-                        estado: "SP",
-                        cep: "01000-100",
-                        descricao: "Dados e analytics",
-                        competencias: ["Python", "SQL"]
-                ),
-                new Empresa(
-                        nome: "CloudNova",
-                        email: "vagas@cloudnova.com",
-                        cnpj: "33333333000103",
-                        pais: "Brasil",
-                        estado: "SC",
-                        cep: "88000-100",
-                        descricao: "Infraestrutura cloud",
-                        competencias: ["Docker", "Linux"]
-                ),
-                new Empresa(
-                        nome: "WebPrime",
-                        email: "contato@webprime.com",
-                        cnpj: "44444444000104",
-                        pais: "Brasil",
-                        estado: "PR",
-                        cep: "80000-100",
-                        descricao: "Desenvolvimento web",
-                        competencias: ["React", "Node"]
-                ),
-                new Empresa(
-                        nome: "InovaTech",
-                        email: "talentos@inovatech.com",
-                        cnpj: "55555555000105",
-                        pais: "Brasil",
-                        estado: "RJ",
-                        cep: "20000-100",
-                        descricao: "Soluções digitais",
-                        competencias: ["Angular", "TypeScript"]
-                )
+                new Empresa("TechSul", "rh@techsul.com", "11111111000101", "Brasil", "RS", "90000-100", "Software sob demanda", ["Java", "Spring"], "corp123"),
+                new Empresa("DataWave", "jobs@datawave.com", "22222222000102", "Brasil", "SP", "01000-100", "Dados e analytics", ["Python", "SQL"], "corp123"),
+                new Empresa("CloudNova", "vagas@cloudnova.com", "33333333000103", "Brasil", "SC", "88000-100", "Infraestrutura cloud", ["Docker", "Linux"], "corp123"),
+                new Empresa("WebPrime", "contato@webprime.com", "44444444000104", "Brasil", "PR", "80000-100", "Desenvolvimento web", ["React", "Node"], "corp123"),
+                new Empresa("InovaTech", "talentos@inovatech.com", "55555555000105", "Brasil", "RJ", "20000-100", "Soluções digitais", ["Angular", "TypeScript"], "corp123")
         ]
     }
 }
