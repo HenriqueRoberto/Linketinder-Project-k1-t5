@@ -2,16 +2,15 @@ package linketinder.service
 
 import linketinder.model.Candidato
 import linketinder.model.Empresa
+import linketinder.data.DadosMock
 
 class LoginService {
-
-    // Procura o candidato mocado pelo e-mail
-    static Candidato autenticarCandidato(List<Candidato> candidatos, String email) {
-        return candidatos.find { it.email.equalsIgnoreCase(email) }
+    // Retorna um usuário específico da lista mada para simular "sessão ativa"
+    static Candidato obterCandidatoMocado() {
+        return DadosMock.candidatos().first()
     }
 
-    // Procura a empresa mocada pelo e-mail
-    static Empresa autenticarEmpresa(List<Empresa> empresas, String email) {
-        return empresas.find { it.email.equalsIgnoreCase(email) }
+    static Empresa obterEmpresaMocada() {
+        return DadosMock.empresas().first()
     }
 }
